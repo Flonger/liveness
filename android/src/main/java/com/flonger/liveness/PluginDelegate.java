@@ -101,9 +101,13 @@ public class PluginDelegate implements
             if (LivenessResult.isSuccess()) {// 活体检测成功
                 String livenessId = LivenessResult.getLivenessId();// 本次活体id 成功将livenessId发给后台
                 //Bitmap livenessBitmap = LivenessResult.getLivenessBitmap();// 本次活体图片
+                Log.e("livenessId+++",livenessId);
             } else {// 活体检测失败
                 String errorCode = LivenessResult.getErrorCode();// 失败错误码
                 String errorMsg = LivenessResult.getErrorMsg();// 失败原因
+                Log.e("errorCode+++",errorCode);
+                Log.e("errorMsg+++",errorMsg);
+
             }
         }
 
