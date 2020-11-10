@@ -11,8 +11,9 @@ class Liveness {
     return version;
   }
 
-  static Future<void> callLiveness(Map<String, String> params) async {
-    await _channel.invokeMethod('callLiveness',params);
+  static Future<String> callLiveness(Map<String, String> params) async {
+    final String livenessid =  await _channel.invokeMethod('callLiveness',params);
+    return livenessid;
   }
 
 }

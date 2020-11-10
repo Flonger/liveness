@@ -100,6 +100,7 @@ public class PluginDelegate implements
         if (requestCode == REQUEST_CODE_LIVENESS) {
             if (LivenessResult.isSuccess()) {// 活体检测成功
                 String livenessId = LivenessResult.getLivenessId();// 本次活体id 成功将livenessId发给后台
+                onResultListener.onResult(livenessId);
                 //Bitmap livenessBitmap = LivenessResult.getLivenessBitmap();// 本次活体图片
                 Log.e("livenessId+++",livenessId);
             } else {// 活体检测失败
@@ -150,5 +151,13 @@ public class PluginDelegate implements
             e.printStackTrace();
         }
         return null;
+    }
+    public interface OnResultListener{
+        void onResult(String livenessId);
+    }
+    public OnResultListener onResultListener;
+    public void setOnResultListener(OnResultListener onResultListener){
+        this.onResultListener=onResultListener;
+
     }
 }

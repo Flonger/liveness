@@ -43,11 +43,17 @@ public class LivenessPlugin implements MethodCallHandler {
   }
 
   @Override
-  public void onMethodCall(MethodCall call, Result result) {
+  public void onMethodCall(MethodCall call, final Result result) {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else if (call.method.equals("callLiveness")){
       delegate.callLiveness(call,result);
+      delegate.setOnResultListener(new PluginDelegate.OnResultListener() {
+        @Override
+        public void onResult(String livenessId) {
+          result.success(livenessId);
+        }
+      });
     } else {
       result.notImplemented();
     }
